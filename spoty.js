@@ -1,23 +1,23 @@
 function menu(){
-    console.log(" 1.- Ver lista de canciones \n 2.- Seleccionar cancion \n 3.- Parar \n 4.- Reproducir \n 5.- Crear Lista de Reproduccion \n 6.- Ver listas de reproduccion \n 7.- Seleccionar una lista de reproduccion \n 8.- Salir");
+    console.log(" 1.- Ver lista de canciones \n 2.- Seleccionar cancion \n 3.- Parar \n 4.- Reproducir \n 5.- Crear Lista de Reproduccion \n 6.- Ver listas de reproduccion \n 7.- Seleccionar una lista de reproduccion \n 8.- Ordenar canciones por duracion de mayor a menor \n 9.- Ordenar las canciones en orden alfabetico \n 10.- Ordenar las canciones en orden inverso \n 11 .-Salir");
 }
 
 function cargarCanciones(){
-    cancion1 = new Cancion( "cancion1", 3.24, 1, "pop", "autor1");
-    cancion2 = new Cancion( "cancion2", 3.24, 2, "instrumental", "autor4");
-    cancion3 = new Cancion( "cancion3", 3.24, 3, "instrumental", "autor6");
-    cancion4 = new Cancion( "cancion4", 3.24, 4, "electronica", "autor13");
-    cancion5 = new Cancion( "cancion5", 3.24, 5, "pop", "autor12");
-    cancion6 = new Cancion( "cancion6", 3.24, 6, "pop", "autor2");
-    cancion7 = new Cancion( "cancion7", 3.24, 7, "pop", "autor2");
-    cancion8 = new Cancion( "cancion8", 3.24, 8, "electronica", "autor3");
-    cancion9 = new Cancion( "cancion9", 3.24, 9, "musica clasica", "autor4");
-    cancion10 = new Cancion( "cancion10", 3.24, 10, "folk", "autor5");
-    cancion11 = new Cancion( "cancion11", 3.24, 11, "instrumenta3", "autor4");
-    cancion12 = new Cancion( "cancion12", 3.24, 12, "folk", "autor1");
-    cancion13 = new Cancion( "cancion13", 3.24, 13, "musica clasica", "autor5");
-    cancion14 = new Cancion( "cancion14", 3.24, 14, "pasillo", "autor6");
-    cancion15 = new Cancion( "cancion15", 3.24, 15, "pasillo", "autor7");
+    cancion1 = new Cancion( "my love", 3.14, 1, "pop", "westlife");
+    cancion2 = new Cancion( "scancion2", 2.24, 2, "instrumental", "autor4");
+    cancion3 = new Cancion( "acancion3", 1.24, 3, "instrumental", "autor6");
+    cancion4 = new Cancion( "bcancion4", 3.15, 4, "electronica", "autor13");
+    cancion5 = new Cancion( "jcancion5", 3.04, 5, "pop", "autor12");
+    cancion6 = new Cancion( "dcancion6", 3.02, 6, "pop", "autor2");
+    cancion7 = new Cancion( "ycancion7", 2.32, 7, "pop", "autor2");
+    cancion8 = new Cancion( "xcancion8", 3.34, 8, "electronica", "autor3");
+    cancion9 = new Cancion( "zcancion9", 3.12, 9, "musica clasica", "autor4");
+    cancion10 = new Cancion( "icancion10", 3.11, 10, "folk", "autor5");
+    cancion11 = new Cancion( "cancion11", 3.01, 11, "instrumenta3", "autor4");
+    cancion12 = new Cancion( "fcancion12", 2.23, 12, "folk", "autor1");
+    cancion13 = new Cancion( "bcancion13", 1.45, 13, "musica clasica", "autor5");
+    cancion14 = new Cancion( "dcancion14", 3.23, 14, "pasillo", "autor6");
+    cancion15 = new Cancion( "rcancion15", 1.48, 15, "pasillo", "autor7");
     canciones.push(cancion1);
     canciones.push(cancion2);
     canciones.push(cancion3);
@@ -35,27 +35,27 @@ function cargarCanciones(){
     canciones.push(cancion15);
 }
 
-function mostrarCanciones(){
-    for (let i = 0; i < canciones.length; i++) {
-        console.log(canciones[i]._ID , canciones[i].nombre);
+function mostrarCanciones(listacanciones){
+    for (let i = 0; i < listacanciones.length; i++) {
+        console.log(listacanciones[i].id , listacanciones[i].nombre);
     }
 }
 
-function seleccionarCancion(){
-    mostrarCanciones();
+function seleccionarCancion(listacanciones){
+    mostrarCanciones(listacanciones);
     id = prompt("Seleccionar cancion : ");    
     return id;
 }
 
-function seleccionarYreproducirCancion(){
-    id = seleccionarCancion();
+function seleccionarYreproducirCancion(listacanciones){
+    id = seleccionarCancion(listacanciones);
     console.log("Cancion  con id ", id, "reproduciendo");
     return id; 
 }
 
 function encontrarPorID(id){
     for (let i = 0; i < canciones.length; i++) {
-        if(canciones[i]._ID  == id){
+        if(canciones[i].id  == id){
             return canciones[i];
         }
     } 
@@ -71,7 +71,7 @@ function volverReproducirCancionActual(id){
     console.log("cancion ", cancion , "reproduciendose")
 }
 
-function crearLista(){
+function crearLista(listacanciones){
     cancionesLista = [];
     opcion = "1";
     while( opcion != "2"){
@@ -79,7 +79,7 @@ function crearLista(){
         opcion = prompt("Ingrese una opcion : ");
         switch(opcion){
             case "1":
-                idCancion = seleccionarCancion();
+                idCancion = seleccionarCancion(listacanciones);
                 c = encontrarPorID(idCancion);
                 cancionesLista.push(c);
                 break;
@@ -111,24 +111,22 @@ function encontrarPorNombre(nombre){
     } 
 }
 
-function mostrarCancionesLista(cancionesListaSelec){
-    for (let i = 0; i < cancionesListaSelec.length; i++) {
-        console.log(cancionesListaSelec[i].nombre);
-    }
-}
-
 function seleccionarCancionLista(cancionesListaSelec){
-    mostrarCancionesLista(cancionesListaSelec);
+    mostrarCanciones(cancionesListaSelec);
     nombreCancion = prompt("Seleccionar cancion (nombre): ");
+    bandera = false;
     for (let i = 0; i < cancionesListaSelec.length; i++) {
         if(cancionesListaSelec[i].nombre  == nombreCancion){
             console.log("Cancion ", cancionesListaSelec[i].nombre, "reproduciendo");
             return cancionesListaSelec[i];
-        }else{
-            console.log("cancion no encontrada");
-            return null;
+            bandera = true;
         }
     }
+    if(!bandera){
+        console.log("cancion no encontrada");
+        return null;
+    }
+
 }
 
 function seleccionarLista(){
@@ -144,7 +142,25 @@ function seleccionarLista(){
     }
 }
 
+function ordenarCancionesMayorMenorDuracion(){
+    canciones.sort( function(a , b){return b.duracion-a.duracion})
+    mostrarCanciones(canciones);
+}
 
+function ordenarPorOrdenAlfabetico(){
+    canciones.sort((a, b) => a.nombre.localeCompare(b.nombre, 'en'));
+    mostrarCanciones(canciones);
+}
+
+function ordenarPorOrdenInverso(){
+    canciones.sort((a, b) => b.nombre.localeCompare(a.nombre, 'en'));
+    mostrarCanciones(canciones);
+}
+
+function ordenarPorId(){
+    canciones.sort( function(a , b){return a.id-b.id})
+    mostrarCanciones(canciones);
+}
 
 
 
@@ -156,15 +172,15 @@ let listaActual;
 
 cargarCanciones();
 
-while(opcion != 8){
+while(opcion != 11){
     menu();
     opcion = prompt("Ingrese una opcion : ");
     switch(opcion){
         case "1":
-            mostrarCanciones();
+            ordenarPorId();
             break;
         case "2" : 
-            idCancionActual = seleccionarYreproducirCancion();
+            idCancionActual = seleccionarYreproducirCancion(canciones);
             break;
         case "3":
             pararCancionActual(idCancionActual);
@@ -173,7 +189,7 @@ while(opcion != 8){
             volverReproducirCancionActual(idCancionActual);
             break;
         case "5":
-            crearLista();
+            crearLista(canciones);
             break;
         case "6":
             verListas();
@@ -181,10 +197,19 @@ while(opcion != 8){
         case "7":
             cancion = seleccionarLista();
             if(cancion != null){
-                idCancionActual = cancion._ID;
+                idCancionActual = cancion.id;
             }
             break;
         case "8":
+            ordenarCancionesMayorMenorDuracion();
+            break;
+        case "9":
+            ordenarPorOrdenAlfabetico();
+            break;
+        case "10":
+            ordenarPorOrdenInverso();
+            break;
+        case "11":
             break;
         default:
             break;
